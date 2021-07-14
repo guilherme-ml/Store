@@ -8,26 +8,26 @@ using Store.Models;
 namespace Store.Controllers
 {
     [ApiController]
-    [Route("v1/prazopagamento")]
-    public class PrazoCondPagamentoController : ControllerBase
+    [Route("v1/prazo")]
+    public class PrazoPagamentoController : ControllerBase
     {
         [HttpGet]
         [Route("")]
-        public async Task<ActionResult<List<PrazoCondPagamento>>> Get([FromServices] DataContext context)
+        public async Task<ActionResult<List<PrazoPagamento>>> Get([FromServices] DataContext context)
         {
-            var prazo = await context.PrazoCondPagamento.ToListAsync();
+            var prazo = await context.Prazo.ToListAsync();
             return prazo;
         }
 
         [HttpPost]
         [Route("")]
-        public async Task<ActionResult<PrazoCondPagamento>> Post(
+        public async Task<ActionResult<PrazoPagamento>> Post(
             [FromServices] DataContext context,
-            [FromBody] PrazoCondPagamento model)
+            [FromBody] PrazoPagamento model)
         {
             if (ModelState.IsValid)
             {
-                context.PrazoCondPagamento.Add(model);
+                context.Prazo.Add(model);
                 await context.SaveChangesAsync();
                 return model;
             }

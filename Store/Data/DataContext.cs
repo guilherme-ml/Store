@@ -20,10 +20,10 @@ namespace Store.Data
         public DbSet<Departamento> Departamento { get; set; }
         public DbSet<Grupo> Grupo { get; set; }
         public DbSet<ItemCompra> ItemCompra { get; set; }
-        public DbSet<PrazoCondPagamento> PrazoCondPagamento { get; set; }
+        public DbSet<PrazoPagamento> Prazo { get; set; }
         public DbSet<ProdutoCaracteristica> ProdCaracteristica { get; set; }
         public DbSet<Promocao> Promocao { get; set; }
         public DbSet<PromoProduto> PromoProduto { get; set; }
-        public DbSet<SituacaoCompra> Situacaocompra { get; set; }
+        public DbSet<SituacaoCompra> Situacao { get; set; }
     }
 }

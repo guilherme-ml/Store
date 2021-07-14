@@ -8,15 +8,15 @@ using Store.Models;
 namespace Store.Controllers
 {
     [ApiController]
-    [Route("v1/promocaoproduto")]
+    [Route("v1/Promocaoproduto")]
     public class PromocaoProdutoController : ControllerBase
     {
         [HttpGet]
         [Route("")]
         public async Task<ActionResult<List<PromoProduto>>> Get([FromServices] DataContext context)
         {
-            var promoproduto = await context.PromoProduto.ToListAsync();
-            return promoproduto;
+            var promocaoproduto = await context.PromoProduto.ToListAsync();
+            return promocaoproduto;
         }
 
         [HttpPost]

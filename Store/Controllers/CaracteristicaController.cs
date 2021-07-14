@@ -8,7 +8,7 @@ using Store.Models;
 namespace Store.Controllers
 {
     [ApiController]
-    [Route("v1/caracteristica")]
+    [Route("v1/Caracteristica")]
     public class CaracteristicaController : ControllerBase
     {
         [HttpGet]

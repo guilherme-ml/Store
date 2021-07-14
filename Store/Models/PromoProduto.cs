@@ -12,9 +12,7 @@ namespace Store.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Este campo é obrigatório")]
-        [MaxLength(1, ErrorMessage = "Este campo deve conter no máximo 1 caractere")]
         public float PrecoProduto { get; set; }
-
 
         public int CondicaoPagamentoID { get; set; }
 

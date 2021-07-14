@@ -15,7 +15,7 @@ namespace Store.Controllers
         [Route("")]
         public async Task<ActionResult<List<SituacaoCompra>>> Get([FromServices] DataContext context)
         {
-            var situacao = await context.Situacaocompra.ToListAsync();
+            var situacao = await context.Situacao.ToListAsync();
             return situacao;
         }
 
@@ -27,7 +27,7 @@ namespace Store.Controllers
         {
             if (ModelState.IsValid)
             {
-                context.Situacaocompra.Add(model);
+                context.Situacao.Add(model);
                 await context.SaveChangesAsync();
                 return model;
             }

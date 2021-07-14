@@ -2,7 +2,7 @@
 
 namespace Store.Models
 {
-    public class PrazoCondPagamento
+    public class PrazoPagamento
     {
         [Key]
         public int Id { get; set; }

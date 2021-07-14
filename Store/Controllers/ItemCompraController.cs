@@ -9,7 +9,7 @@ namespace Store.Controllers
 {
 
     [ApiController]
-    [Route("v1/itemcompra")]
+    [Route("v1/Itemcompra")]
     public class ItemCompraController : ControllerBase
     {
         [HttpGet]

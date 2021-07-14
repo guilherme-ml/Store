@@ -8,7 +8,7 @@ using Store.Models;
 namespace Store.Controllers
 {
     [ApiController]
-    [Route("v1/condicaopagamento")]
+    [Route("v1/Condicaopagamento")]
     public class CondicaoPagamentoController : ControllerBase
     {
         [HttpGet]

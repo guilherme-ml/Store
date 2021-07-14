@@ -7,7 +7,7 @@ using Store.Models;
 namespace Store.Controllers
 {
     [ApiController]
-    [Route("v1/grupo")]
+    [Route("v1/Grupo")]
     public class GrupoController : ControllerBase
     {
         [HttpGet]

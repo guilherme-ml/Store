@@ -43,8 +43,8 @@ namespace Store.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NomeCategoria = table.Column<string>(type: "nvarchar(45)", maxLength: 45, nullable: false),
-                    PosCategoria = table.Column<string>(type: "nvarchar(5)", maxLength: 5, nullable: true),
-                    IdfAtivo = table.Column<int>(type: "int", maxLength: 1, nullable: false),
+                    PosCategoria = table.Column<string>(type: "int", maxLength: 5, nullable: true),
+                    IdfAtivo = table.Column<int>(type: "int", maxLength: 5, nullable: false),
                     DepartamentoId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

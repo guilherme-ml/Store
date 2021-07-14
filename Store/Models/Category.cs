@@ -7,7 +7,6 @@ namespace Store.Models
         [Key]
         public int Id { get; set; }
 
-
         [Required(ErrorMessage = "Este campo é obrigatório")]
         [MaxLength(45, ErrorMessage = "Este campo deve ter 3 e 45 caracteres")]
         [MinLength(3, ErrorMessage = "Este campo deve ter 3 e 45 caracteres")]

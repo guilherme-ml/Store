@@ -8,26 +8,26 @@ using Store.Models;
 namespace Store.Controllers
 {
     [ApiController]
-    [Route("v1/Produtocaracteristica")]
-    public class ProdutoCaracteristicaController : ControllerBase
+    [Route("v1/Cliente")]
+    public class ClienteController : ControllerBase
     {
         [HttpGet]
         [Route("")]
-        public async Task<ActionResult<List<ProdutoCaracteristica>>> Get([FromServices] DataContext context)
+        public async Task<ActionResult<List<Cliente>>> Get([FromServices] DataContext context)
         {
-            var prodcaracteristica = await context.ProdCaracteristica.ToListAsync();
-            return prodcaracteristica;
+            var cliente = await context.Clientes.ToListAsync();
+            return cliente;
         }
 
         [HttpPost]
         [Route("")]
-        public async Task<ActionResult<ProdutoCaracteristica>> Post(
+        public async Task<ActionResult<Cliente>> Post(
             [FromServices] DataContext context,
-            [FromBody] ProdutoCaracteristica model)
+            [FromBody] Cliente model)
         {
             if (ModelState.IsValid)
             {
-                context.ProdCaracteristica.Add(model);
+                context.Clientes.Add(model);
                 await context.SaveChangesAsync();
                 return model;
             }

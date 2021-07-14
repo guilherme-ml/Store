@@ -80,9 +80,9 @@ namespace Store.Migrations
                         .HasMaxLength(45)
                         .HasColumnType("nvarchar(45)");
 
-                    b.Property<string>("PosCategoria")
+                    b.Property<int>("PosCategoria")
                         .HasMaxLength(5)
-                        .HasColumnType("nvarchar(5)");
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

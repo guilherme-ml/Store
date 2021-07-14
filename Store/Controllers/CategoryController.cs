@@ -8,7 +8,7 @@ using Store.Models;
 namespace Store.Controllers
 {
     [ApiController]
-    [Route("v1/categories")]
+    [Route("v1/categoria")]
     public class CategoryController : ControllerBase
     {
         [HttpGet]
@@ -23,7 +23,7 @@ namespace Store.Controllers
         [Route("")]
         public async Task<ActionResult<Category>> Post(
             [FromServices] DataContext context,
-            [FromBody]Category model)
+            [FromBody] Category model)
         {
             if (ModelState.IsValid)
             {

@@ -9,14 +9,14 @@ using Store.Models;
 namespace Store.Controllers
 {
     [ApiController]
-    [Route("v1/products")]
+    [Route("v1/Products")]
     public class ProductController : ControllerBase
     {
         [HttpGet]
         [Route("")]
         public async Task<ActionResult<List<Product>>> Get([FromServices] DataContext context)
         {
-            var products = await context.Products.Include(x => x.Category).ToListAsync();
+            var products = await context.Products.ToListAsync();
             return products;
         }
         [HttpGet]
@@ -29,7 +29,7 @@ namespace Store.Controllers
             return product;
         }
         [HttpGet]
-        [Route("categories/{id:int}")]
+        [Route("categoria/{id:int}")]
 
         public async Task<ActionResult<List<Product>>> GetByCategory([FromServices] DataContext context, int id)
         {
