@@ -58,5 +58,24 @@ namespace Store.Controllers
                 return BadRequest(ModelState);
             }
         }
+        [HttpPut("{id:int}")]
+        public async Task<ActionResult<Product>> Update(
+            [FromServices] DataContext context,
+            [FromBody] Product product,
+            int id)
+        {
+            if (id != product.Id) { return BadRequest(); }
+            context.Entry(product).State = EntityState.Modified;
+
+            try
+            {
+                await context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                return NotFound();
+            }
+            return NoContent();
+        }
     }
 }

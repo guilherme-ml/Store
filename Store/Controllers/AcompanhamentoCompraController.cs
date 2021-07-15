@@ -41,28 +41,29 @@ namespace Store.Controllers
         [Route("{id:int}")]
         public async Task<ActionResult<AcompanhamentoCompra>> GetById([FromServices] DataContext context, int id)
         {
-            var acompanhamento = await context.Acompanhamento.Include(x => x.Id)
+            var acompanhamento = await context.Acompanhamento
                 .AsNoTracking()
                 .FirstOrDefaultAsync(x => x.Id == id);
             return acompanhamento;
         }
 
-        [HttpPut("{id:length(24)}")]
+        [HttpPut("{id:int}")]
         public async Task<ActionResult<AcompanhamentoCompra>> Update(
             [FromServices] DataContext context,
-            [FromBody] AcompanhamentoCompra model,
+            [FromBody] AcompanhamentoCompra acompanhamento, 
             int id)
         {
-            int i = 0;
-            var aux = await context.Acompanhamento.ToListAsync();
-            while (i <= aux.Count ) {
-                if(aux[i].Id == id)
-                {
-                    return aux[i];
-                }
-                i++;
-            }
+           if(id != acompanhamento.Id) { return BadRequest(); }
+            context.Entry(acompanhamento).State = EntityState.Modified;
 
+            try
+            {
+                await context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                return NotFound();
+            }
             return NoContent();
         }
 

@@ -36,5 +36,34 @@ namespace Store.Controllers
                 return BadRequest(ModelState);
             }
         }
+        [HttpGet]
+        [Route("{id:int}")]
+        public async Task<ActionResult<SituacaoCompra>> GetById([FromServices] DataContext context, int id)
+        {
+            var situacao = await context.Situacao
+                .AsNoTracking()
+                .FirstOrDefaultAsync(x => x.Id == id);
+            return situacao;
+        }
+
+        [HttpPut("{id:int}")]
+        public async Task<ActionResult<SituacaoCompra>> Update(
+            [FromServices] DataContext context,
+            [FromBody] SituacaoCompra situacao,
+            int id)
+        {
+            if (id != situacao.Id) { return BadRequest(); }
+            context.Entry(situacao).State = EntityState.Modified;
+
+            try
+            {
+                await context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                return NotFound();
+            }
+            return NoContent();
+        }
     }
 }

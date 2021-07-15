@@ -36,5 +36,34 @@ namespace Store.Controllers
                 return BadRequest(ModelState);
             }
         }
+        [HttpGet]
+        [Route("{id:int}")]
+        public async Task<ActionResult<ProdutoCaracteristica>> GetById([FromServices] DataContext context, int id)
+        {
+            var prodcaracteristica = await context.ProdCaracteristica
+                .AsNoTracking()
+                .FirstOrDefaultAsync(x => x.Id == id);
+            return prodcaracteristica;
+        }
+
+        [HttpPut("{id:int}")]
+        public async Task<ActionResult<ProdutoCaracteristica>> Update(
+            [FromServices] DataContext context,
+            [FromBody] ProdutoCaracteristica produtoCaracteristica,
+            int id)
+        {
+            if (id != produtoCaracteristica.Id) { return BadRequest(); }
+            context.Entry(produtoCaracteristica).State = EntityState.Modified;
+
+            try
+            {
+                await context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                return NotFound();
+            }
+            return NoContent();
+        }
     }
 }
