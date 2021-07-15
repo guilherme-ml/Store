@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Store.Data;
@@ -36,5 +37,34 @@ namespace Store.Controllers
                 return BadRequest(ModelState);
             }
         }
+        [HttpGet]
+        [Route("{id:int}")]
+        public async Task<ActionResult<AcompanhamentoCompra>> GetById([FromServices] DataContext context, int id)
+        {
+            var acompanhamento = await context.Acompanhamento.Include(x => x.Id)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(x => x.Id == id);
+            return acompanhamento;
+        }
+
+        [HttpPut("{id:length(24)}")]
+        public async Task<ActionResult<AcompanhamentoCompra>> Update(
+            [FromServices] DataContext context,
+            [FromBody] AcompanhamentoCompra model,
+            int id)
+        {
+            int i = 0;
+            var aux = await context.Acompanhamento.ToListAsync();
+            while (i <= aux.Count ) {
+                if(aux[i].Id == id)
+                {
+                    return aux[i];
+                }
+                i++;
+            }
+
+            return NoContent();
+        }
+
     }
 }
