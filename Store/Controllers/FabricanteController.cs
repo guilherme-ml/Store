@@ -65,6 +65,16 @@ namespace Store.Controllers
             }
             return NoContent();
         }
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult<Fabricante>> Delete(
+        [FromServices] DataContext context,
+        int id)
+        {
+            var fabricante = await context.Fabricantes.FindAsync(id);
+            context.Fabricantes.Remove(fabricante);
+            await context.SaveChangesAsync();
+            return fabricante;
+        }
     }
 }
 

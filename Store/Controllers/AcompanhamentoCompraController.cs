@@ -66,6 +66,16 @@ namespace Store.Controllers
             }
             return NoContent();
         }
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult<AcompanhamentoCompra>> Delete(
+        [FromServices] DataContext context,
+        int id)
+        {
+            var acompanhamento = await context.Acompanhamento.FindAsync(id);
+            context.Acompanhamento.Remove(acompanhamento);
+            await context.SaveChangesAsync();
+            return acompanhamento;
+        }
 
     }
 }

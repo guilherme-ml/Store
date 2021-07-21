@@ -65,5 +65,15 @@ namespace Store.Controllers
             }
             return NoContent();
         }
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult<PrazoPagamento>> Delete(
+        [FromServices] DataContext context,
+        int id)
+        {
+            var prazo = await context.Prazo.FindAsync(id);
+            context.Prazo.Remove(prazo);
+            await context.SaveChangesAsync();
+            return prazo;
+        }
     }
 }

@@ -10,7 +10,7 @@ using Store.Data;
 namespace Store.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210709175601_Store")]
+    [Migration("20210716122217_Store")]
     partial class Store
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,7 +50,6 @@ namespace Store.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("IdfAtivo")
-                        .HasMaxLength(1)
                         .HasColumnType("int");
 
                     b.Property<string>("NomeCaracteristica")
@@ -74,7 +73,6 @@ namespace Store.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("IdfAtivo")
-                        .HasMaxLength(1)
                         .HasColumnType("int");
 
                     b.Property<string>("NomeCategoria")
@@ -82,9 +80,8 @@ namespace Store.Migrations
                         .HasMaxLength(45)
                         .HasColumnType("nvarchar(45)");
 
-                    b.Property<string>("PosCategoria")
-                        .HasMaxLength(5)
-                        .HasColumnType("nvarchar(5)");
+                    b.Property<int>("PosCategoria")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -173,7 +170,6 @@ namespace Store.Migrations
                         .HasColumnType("nvarchar(45)");
 
                     b.Property<int>("IdfAtivo")
-                        .HasMaxLength(1)
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -192,7 +188,6 @@ namespace Store.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("IdfAtivo")
-                        .HasMaxLength(1)
                         .HasColumnType("int");
 
                     b.Property<string>("NomeDepartamento")
@@ -213,7 +208,6 @@ namespace Store.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("IdfAtivo")
-                        .HasMaxLength(1)
                         .HasColumnType("int");
 
                     b.Property<string>("NomeFabricante")
@@ -239,7 +233,6 @@ namespace Store.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("IdfAtivo")
-                        .HasMaxLength(1)
                         .HasColumnType("int");
 
                     b.Property<string>("NomeGrupo")
@@ -276,7 +269,7 @@ namespace Store.Migrations
                     b.ToTable("ItemCompra");
                 });
 
-            modelBuilder.Entity("Store.Models.PrazoCondPagamento", b =>
+            modelBuilder.Entity("Store.Models.PrazoPagamento", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -316,7 +309,6 @@ namespace Store.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("IdfAtivo")
-                        .HasMaxLength(1)
                         .HasColumnType("int");
 
                     b.Property<string>("NomeProduto")
@@ -368,7 +360,6 @@ namespace Store.Migrations
                         .HasColumnType("int");
 
                     b.Property<float>("PrecoProduto")
-                        .HasMaxLength(1)
                         .HasColumnType("real");
 
                     b.Property<int>("ProdutoId")
@@ -403,6 +394,25 @@ namespace Store.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Promocao");
+                });
+
+            modelBuilder.Entity("Store.Models.SituacaoCompra", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("DescSituacaoCompra")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<int>("IdfAtivo")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Situacao");
                 });
 
             modelBuilder.Entity("Store.Models.Product", b =>

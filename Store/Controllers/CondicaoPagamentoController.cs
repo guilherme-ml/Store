@@ -65,5 +65,15 @@ namespace Store.Controllers
             }
             return NoContent();
         }
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult<CondPagamento>> Delete(
+        [FromServices] DataContext context,
+        int id)
+        {
+            var condicao = await context.Condicao.FindAsync(id);
+            context.Condicao.Remove(condicao);
+            await context.SaveChangesAsync();
+            return condicao;
+        }
     }
 }

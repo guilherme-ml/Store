@@ -64,5 +64,15 @@ namespace Store.Controllers
             }
             return NoContent();
         }
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult<Promocao>> Delete(
+        [FromServices] DataContext context,
+        int id)
+        {
+            var promocao = await context.Promocao.FindAsync(id);
+            context.Promocao.Remove(promocao);
+            await context.SaveChangesAsync();
+            return promocao;
+        }
     }
 }
