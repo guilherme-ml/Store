@@ -16,7 +16,6 @@ namespace Store.Models
 
         public int IdfAtivo { get; set; }
 
-
         public int DepartamentoId { get; set; }
 
     }

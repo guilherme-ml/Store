@@ -45,7 +45,7 @@ namespace Store.Controllers
 
         public async Task<ActionResult<Product>> Post(
             [FromServices] DataContext context,
-            [FromBody]Product model)
+            [FromBody] Product model)
         {
             if (ModelState.IsValid)
             {

@@ -23,7 +23,6 @@ namespace Store.Models
         [Range(1, int.MaxValue, ErrorMessage = "O preço deve ser maior que zero")]
         public float PrecoProduto { get; set; }
 
-
         [Required(ErrorMessage = "Este campo é obrigatório")]
 
         public string CategoriaProduto { get; set; }
